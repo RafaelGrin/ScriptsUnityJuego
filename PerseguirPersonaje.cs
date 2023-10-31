@@ -4,6 +4,14 @@ public class PerseguirJugador : MonoBehaviour
 {
     public Transform jugador; // Arrastra el objeto First Person Controller al Inspector
     public float velocidadPersecucion = 5.0f;
+    private Rigidbody rb;
+
+    void Start()
+    {
+        rb = GetComponent<Rigidbody>();
+        rb.freezeRotation = true; // Evitar rotación
+        rb.constraints = RigidbodyConstraints.FreezePositionY; // Evitar movimientos en el eje Y
+    }
 
     void Update()
     {
@@ -16,7 +24,7 @@ public class PerseguirJugador : MonoBehaviour
             direccion.Normalize();
 
             // Mueve la pelota en la dirección del jugador con la velocidad de persecución.
-            transform.Translate(direccion * velocidadPersecucion * Time.deltaTime);
+            rb.velocity = direccion * velocidadPersecucion;
         }
     }
 }
