@@ -26,6 +26,14 @@ public class Player : MonoBehaviour
 
                     // Notifica que se ha recogido la llave con su nombre
                     OnLlaveRecogida?.Invoke(hit.collider.gameObject.name);
+
+                  if (coinGrabSound != null)
+                    {
+                        audioSource.PlayOneShot(coinGrabSound);
+                    }
+
+
+
                 }
             }
         }
